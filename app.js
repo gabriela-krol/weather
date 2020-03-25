@@ -4,6 +4,7 @@ const tempElement = document.querySelector(".temperature-value p");
 const descElement = document.querySelector(".temperature-description p");
 const locationElement = document.querySelector(".location p");
 const notificationElement = document.querySelector(".notification");
+const toggleElement = document.querySelector(".weather--kelvins");
 
 const weather = {};
 
@@ -60,6 +61,7 @@ function displayWeather(){
     tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
     descElement.innerHTML = weather.description;
     locationElement.innerHTML = `${weather.city}, ${weather.country}`;
+    toggleElement.innerHTML = "<p>CLICK ON THE TEMPERATURE TO SWITCH TO FAHRENHEITS</p>";
 }
 
 function celsiusToFahrenheit(temperature){
@@ -72,11 +74,12 @@ tempElement.addEventListener("click", function(){
     if(weather.temperature.unit == "celsius"){
         let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
         fahrenheit = Math.floor(fahrenheit);
-
         tempElement.innerHTML = `${fahrenheit}°<span>F</span>`;
+        toggleElement.innerHTML = "<p>CLICK ON THE TEMPERATURE TO SWITCH TO CELSIUS</p>";
         weather.temperature.unit = "fahrenheit";
     } else {
         tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
+        toggleElement.innerHTML = "<p>CLICK ON THE TEMPERATURE TO SWITCH TO FAHRENHEITS</p>";
         weather.temperature.unit = "celsius"
     }
 });
